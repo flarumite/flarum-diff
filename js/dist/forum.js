@@ -557,6 +557,8 @@ var DiffList = /*#__PURE__*/function (_Component) {
   _proto.oncreate = function oncreate(vnode) {
     var _this2 = this;
 
+    _Component.prototype.oncreate.call(this, vnode);
+
     if (this.forModal && this.selectedItem) {
       var $selectedItem = this.$('li#parentDiff' + this.selectedItem);
       $selectedItem.find('button').prop('disabled', true);
@@ -818,10 +820,12 @@ var DiffModal = /*#__PURE__*/function (_Modal) {
   };
 
   _proto.oncreate = function oncreate(vnode) {
-    // workaround for missing 'in' class on .ModalManager
+    _Modal.prototype.oncreate.call(this, vnode); // workaround for missing 'in' class on .ModalManager
     // after redrawing the DiffList component.
     // because i'm done with this shit.
     // https://github.com/flarum/core/pull/2080
+
+
     if (this.showing && !$('.ModalManager').hasClass('in')) $('.ModalManager').addClass('in'); // we should re-Initialize this component after user
     // clicks a different revision while modal is open
 

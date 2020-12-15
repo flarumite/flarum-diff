@@ -95,6 +95,7 @@ export default class DiffModal extends Modal {
   }
 
   oncreate(vnode) {
+    super.oncreate(vnode);
     // workaround for missing 'in' class on .ModalManager
     // after redrawing the DiffList component.
     // because i'm done with this shit.

@@ -190,6 +190,7 @@ export default class DiffList extends Component {
   }
 
   oncreate(vnode) {
+    super.oncreate(vnode);
     if (this.forModal && this.selectedItem) {
       let $selectedItem = this.$('li#parentDiff' + this.selectedItem);
       $selectedItem.find('button').prop('disabled', true);
