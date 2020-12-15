@@ -8,44 +8,32 @@ import icon from 'flarum/helpers/icon';
  * It also contains DiffList components.
  */
 export default class DiffDropdown extends Dropdown {
-  static initProps(props) {
+  static initAttrs(props) {
+    super.initAttrs(props);
     props.className = 'DiffDropdown';
     props.buttonClassName = 'Button Button--link';
     props.menuClassName = props.menuClassName;
     props.label = app.translator.trans('the-turk-diff.forum.editedText');
     props.icon = 'fas fa-history';
 
-    super.initProps(props);
+
   }
 
-  init() {
-    super.init();
+  oninit(vnode) {
+    super.oninit(vnode);
 
     /**
      * The post that we're working with.
      *
      * @type {Post[]}
      */
-    this.post = this.props.post;
-
-    /**
-     * Create a new revision list.
-     * This approach may not work with newer Mithril versions.
-     *
-     * @type {DiffList}
-     */
-    this.list = new DiffList({
-      post: this.post,
-      forModal: false,
-      selectedItem: null,
-      moreResults: null,
-    });
+    this.post = this.attrs.post;
   }
 
   getButton() {
     const vdom = super.getButton();
 
-    vdom.attrs.title = this.props.label;
+    vdom.attrs.title = this.attrs.label;
     vdom.attrs.onclick = this.onclick.bind(this);
 
     return vdom;
@@ -53,25 +41,25 @@ export default class DiffDropdown extends Dropdown {
 
   getButtonContent() {
     return [
-      icon(this.props.icon, {
+      icon(this.attrs.icon, {
         className: 'Button-icon',
       }),
-      <span className="Button-label">{this.props.label}</span>,
+      <span className="Button-label">{this.attrs.label}</span>,
     ];
   }
 
   getMenu() {
     return (
-      <div className={'Dropdown-menu ' + this.props.menuClassName}>
+      <div className={'Dropdown-menu ' + this.attrs.menuClassName}>
         <div className="DiffList-header">
           <h4>
             {/* edited 1 time | edited x times */}
-            {app.translator.transChoice('the-turk-diff.forum.revisionInfo', this.props.post.revisionCount(), {
-              revisionCount: this.props.post.revisionCount(),
+            {app.translator.transChoice('the-turk-diff.forum.revisionInfo', this.attrs.post.revisionCount(), {
+              revisionCount: this.attrs.post.revisionCount(),
             })}
           </h4>
         </div>
-        {this.showing ? this.list.render() : ''}
+        {this.showing ? <DiffList post={this.post} forModal={false} selectedItem={null} moreResults={null}></DiffList> : ''}
       </div>
     );
   }
@@ -80,6 +68,8 @@ export default class DiffDropdown extends Dropdown {
    * Load revision list.
    */
   onclick() {
-    this.list.load();
+    //this.list.load();
+    this.showing = true;
+    m.redraw.sync();
   }
 }

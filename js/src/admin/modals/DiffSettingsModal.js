@@ -22,11 +22,10 @@ export default class DiffSettingsModal extends SettingsModal {
           'label',
           Switch.component({
             state: this.setting(settingsPrefix + 'mainPostOnly', '0')() === '1',
-            children: app.translator.trans(localePrefix + 'mainPostOnly'),
             onchange: (value) => {
               this.setting(settingsPrefix + 'mainPostOnly')(value ? '1' : '0');
             },
-          })
+          }, app.translator.trans(localePrefix + 'mainPostOnly'))
         ),
       ]),
       m('.Form-group', [
@@ -34,11 +33,10 @@ export default class DiffSettingsModal extends SettingsModal {
           'label',
           Switch.component({
             state: this.setting(settingsPrefix + 'separateBlock', '1')() === '1',
-            children: app.translator.trans(localePrefix + 'separateBlock'),
             onchange: (value) => {
               this.setting(settingsPrefix + 'separateBlock')(value ? '1' : '0');
             },
-          })
+          }, app.translator.trans(localePrefix + 'separateBlock'))
         ),
       ]),
       m('.Form-group', [
@@ -46,11 +44,10 @@ export default class DiffSettingsModal extends SettingsModal {
           'label',
           Switch.component({
             state: this.setting(settingsPrefix + 'textFormatting', '1')() === '1',
-            children: app.translator.trans(localePrefix + 'textFormatting'),
             onchange: (value) => {
               this.setting(settingsPrefix + 'textFormatting')(value ? '1' : '0');
             },
-          })
+          }, app.translator.trans(localePrefix + 'textFormatting'))
         ),
       ]),
       m('.Form-group', [
@@ -114,11 +111,10 @@ export default class DiffSettingsModal extends SettingsModal {
           'label',
           Switch.component({
             state: this.setting(settingsPrefix + 'archiveOlds', '0')() === '1',
-            children: app.translator.trans(localePrefix + 'archiveOlds'),
             onchange: (value) => {
               this.setting(settingsPrefix + 'archiveOlds')(value ? '1' : '0');
             },
-          })
+          }, app.translator.trans(localePrefix + 'archiveOlds'))
         ),
         m(
           'div',
@@ -186,11 +182,10 @@ export default class DiffSettingsModal extends SettingsModal {
           'label',
           Switch.component({
             state: this.setting(settingsPrefix + 'useCrons', '0')() === '1',
-            children: app.translator.trans(localePrefix + 'useCrons'),
             onchange: (value) => {
               this.setting(settingsPrefix + 'useCrons')(value ? '1' : '0');
             },
-          })
+          }, app.translator.trans(localePrefix + 'useCrons'))
         ),
         m(
           'div',

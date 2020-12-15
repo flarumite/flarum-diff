@@ -21,6 +21,7 @@ namespace TheTurk\Diff;
 use Flarum\Extend;
 use Flarum\Foundation\Application;
 use Flarum\Post\Post;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher;
 use TheTurk\Diff\Api\Controllers;
 use TheTurk\Diff\Models\Diff;
@@ -44,15 +45,12 @@ return [
     (new Extend\Model(Post::class))
         ->hasMany('diff', Diff::class, 'post_id'),
 
-    static function (Application $app) {
-        /** @var Dispatcher $events */
-        $events = $app['events'];
-
+    static function (Container $container, Dispatcher $events) {
         $events->subscribe(Listeners\PostActions::class);
         $events->subscribe(Listeners\AddDiffRelationship::class);
         $events->subscribe(Listeners\RegisterConsoleCommand::class);
         $events->subscribe(Listeners\UserPreferences::class);
 
-        $app->register(Providers\ConsoleProvider::class);
+        //$container->register(Providers\ConsoleProvider::class);
     },
 ];

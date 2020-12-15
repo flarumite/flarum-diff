@@ -5,7 +5,7 @@ import DiffSettingsModal from './modals/DiffSettingsModal';
 
 app.initializers.add('the-turk-diff', (app) => {
   // show extension's settings modal
-  app.extensionSettings['the-turk-diff'] = () => app.modal.show(new DiffSettingsModal());
+  app.extensionSettings['the-turk-diff'] = () => app.modal.show(DiffSettingsModal);
 
   extend(PermissionGrid.prototype, 'viewItems', (items) => {
     // who can view edit history?
