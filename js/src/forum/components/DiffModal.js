@@ -146,59 +146,62 @@ export default class DiffModal extends Modal {
                 // as we can't rollback to current post.
               }
               {this.post.canRollbackEditHistory() && this.comparisonBetween.old.diffId
-                ? Button.component({
-                    icon: 'fas fa-reply',
-                    onclick: () => {
-                      if (
-                        confirm(
-                          app.translator.trans('the-turk-diff.forum.confirmRollback', {
-                            number: this.revision.revision(),
-                          })
-                        )
-                      ) {
-                        this.loading = true;
-                        m.redraw();
+                ? Button.component(
+                    {
+                      icon: 'fas fa-reply',
+                      onclick: () => {
+                        if (
+                          confirm(
+                            app.translator.trans('the-turk-diff.forum.confirmRollback', {
+                              number: this.revision.revision(),
+                            })
+                          )
+                        ) {
+                          this.loading = true;
+                          m.redraw();
 
-                        let rollbackTo =
-                          this.revision.revision() == this.post.revisionCount() ? this.comparisonBetween.old.diffId : this.revision.id();
+                          let rollbackTo =
+                            this.revision.revision() == this.post.revisionCount() ? this.comparisonBetween.old.diffId : this.revision.id();
 
-                        app
-                          .request({
-                            url: `${app.forum.attribute('apiUrl')}/diff/${rollbackTo}`,
-                            method: 'POST',
-                          })
-                          .then(() => {
-                            redrawPost(this.post);
-                            app.modal.close();
+                          app
+                            .request({
+                              url: `${app.forum.attribute('apiUrl')}/diff/${rollbackTo}`,
+                              method: 'POST',
+                            })
+                            .then(() => {
+                              redrawPost(this.post);
+                              app.modal.close();
 
-                            if (app.cache.diffs && app.cache.diffs[this.post.id()]) {
-                              delete app.cache.diffs[this.post.id()];
-                            }
+                              if (app.cache.diffs && app.cache.diffs[this.post.id()]) {
+                                delete app.cache.diffs[this.post.id()];
+                              }
 
-                            this.showAlert('success', 'rollback');
-                          })
-                          .catch(() => {
-                            this.loading = false;
-                            m.redraw();
-                            redrawPost(this.post);
+                              this.showAlert('success', 'rollback');
+                            })
+                            .catch(() => {
+                              this.loading = false;
+                              m.redraw();
+                              redrawPost(this.post);
 
-                            this.showAlert('error', 'rollback');
-                          });
-                      }
+                              this.showAlert('error', 'rollback');
+                            });
+                        }
+                      },
                     },
-                  }, this.revision.revision() == 0
-                  ? /* we're viewing the original content */
-                    app.translator.trans('the-turk-diff.forum.rollbackToOriginalButton')
-                  : this.revision.revision() == this.post.revisionCount()
-                  ? this.comparisonBetween.old.revision != 0
-                    ? /* we're comparing this revision with current content. */
-                      app.translator.trans('the-turk-diff.forum.revertChangesButton')
-                    : /* we're comparing this revision with original content */
-                      app.translator.trans('the-turk-diff.forum.rollbackToOriginalButton')
-                  : /* we're comparing this revision with another revision */
-                    app.translator.trans('the-turk-diff.forum.rollbackButton', {
-                      number: this.revision.revision(),
-                    }))
+                    this.revision.revision() == 0
+                      ? /* we're viewing the original content */
+                        app.translator.trans('the-turk-diff.forum.rollbackToOriginalButton')
+                      : this.revision.revision() == this.post.revisionCount()
+                      ? this.comparisonBetween.old.revision != 0
+                        ? /* we're comparing this revision with current content. */
+                          app.translator.trans('the-turk-diff.forum.revertChangesButton')
+                        : /* we're comparing this revision with original content */
+                          app.translator.trans('the-turk-diff.forum.rollbackToOriginalButton')
+                      : /* we're comparing this revision with another revision */
+                        app.translator.trans('the-turk-diff.forum.rollbackButton', {
+                          number: this.revision.revision(),
+                        })
+                  )
                 : ''}
 
               {
@@ -207,33 +210,36 @@ export default class DiffModal extends Modal {
                 // because it's the current post actually.
               }
               {this.post.canDeleteEditHistory() && this.revision.revision() != this.post.revisionCount()
-                ? Button.component({
-                    icon: 'far fa-trash-alt',
-                    onclick: () => {
-                      if (confirm(app.translator.trans('the-turk-diff.forum.confirmDelete'))) {
-                        this.loading = true;
-                        m.redraw();
+                ? Button.component(
+                    {
+                      icon: 'far fa-trash-alt',
+                      onclick: () => {
+                        if (confirm(app.translator.trans('the-turk-diff.forum.confirmDelete'))) {
+                          this.loading = true;
+                          m.redraw();
 
-                        this.revision
-                          .delete()
-                          .then(() => {
-                            app.modal.close();
+                          this.revision
+                            .delete()
+                            .then(() => {
+                              app.modal.close();
 
-                            if (app.cache.diffs && app.cache.diffs[this.post.id()]) {
-                              delete app.cache.diffs[this.post.id()];
-                            }
+                              if (app.cache.diffs && app.cache.diffs[this.post.id()]) {
+                                delete app.cache.diffs[this.post.id()];
+                              }
 
-                            this.showAlert('success', 'delete');
-                          })
-                          .catch(() => {
-                            this.loading = false;
-                            m.redraw();
+                              this.showAlert('success', 'delete');
+                            })
+                            .catch(() => {
+                              this.loading = false;
+                              m.redraw();
 
-                            this.showAlert('error', 'delete');
-                          });
-                      }
+                              this.showAlert('error', 'delete');
+                            });
+                        }
+                      },
                     },
-                  }, app.translator.trans('the-turk-diff.forum.deleteButton'))
+                    app.translator.trans('the-turk-diff.forum.deleteButton')
+                  )
                 : ''}
             </Dropdown>
           ) : (
@@ -370,12 +376,17 @@ export default class DiffModal extends Modal {
         </div>
 
         {/* Revision List Container */}
-        <div className="diff-grid-item diff-grid-revisions">{DiffList, {
-      post: this.post,
-      forModal: true,
-      selectedItem: this.revision.id(),
-      moreResults: this.attrs.moreResults,
-    }}</div>
+        <div className="diff-grid-item diff-grid-revisions">
+          {
+            (DiffList,
+            {
+              post: this.post,
+              forModal: true,
+              selectedItem: this.revision.id(),
+              moreResults: this.attrs.moreResults,
+            })
+          }
+        </div>
 
         {/* Diffs Container */}
         <div className="diff-grid-item diff-grid-diff">

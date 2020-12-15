@@ -15,8 +15,6 @@ export default class DiffDropdown extends Dropdown {
     props.menuClassName = props.menuClassName;
     props.label = app.translator.trans('the-turk-diff.forum.editedText');
     props.icon = 'fas fa-history';
-
-
   }
 
   oninit(vnode) {

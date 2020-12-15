@@ -20,34 +20,43 @@ export default class DiffSettingsModal extends SettingsModal {
       m('.Form-group', [
         m(
           'label',
-          Switch.component({
-            state: this.setting(settingsPrefix + 'mainPostOnly', '0')() === '1',
-            onchange: (value) => {
-              this.setting(settingsPrefix + 'mainPostOnly')(value ? '1' : '0');
+          Switch.component(
+            {
+              state: this.setting(settingsPrefix + 'mainPostOnly', '0')() === '1',
+              onchange: (value) => {
+                this.setting(settingsPrefix + 'mainPostOnly')(value ? '1' : '0');
+              },
             },
-          }, app.translator.trans(localePrefix + 'mainPostOnly'))
+            app.translator.trans(localePrefix + 'mainPostOnly')
+          )
         ),
       ]),
       m('.Form-group', [
         m(
           'label',
-          Switch.component({
-            state: this.setting(settingsPrefix + 'separateBlock', '1')() === '1',
-            onchange: (value) => {
-              this.setting(settingsPrefix + 'separateBlock')(value ? '1' : '0');
+          Switch.component(
+            {
+              state: this.setting(settingsPrefix + 'separateBlock', '1')() === '1',
+              onchange: (value) => {
+                this.setting(settingsPrefix + 'separateBlock')(value ? '1' : '0');
+              },
             },
-          }, app.translator.trans(localePrefix + 'separateBlock'))
+            app.translator.trans(localePrefix + 'separateBlock')
+          )
         ),
       ]),
       m('.Form-group', [
         m(
           'label',
-          Switch.component({
-            state: this.setting(settingsPrefix + 'textFormatting', '1')() === '1',
-            onchange: (value) => {
-              this.setting(settingsPrefix + 'textFormatting')(value ? '1' : '0');
+          Switch.component(
+            {
+              state: this.setting(settingsPrefix + 'textFormatting', '1')() === '1',
+              onchange: (value) => {
+                this.setting(settingsPrefix + 'textFormatting')(value ? '1' : '0');
+              },
             },
-          }, app.translator.trans(localePrefix + 'textFormatting'))
+            app.translator.trans(localePrefix + 'textFormatting')
+          )
         ),
       ]),
       m('.Form-group', [
@@ -109,12 +118,15 @@ export default class DiffSettingsModal extends SettingsModal {
         m('.helpText', app.translator.trans(localePrefix + 'archiveInfo')),
         m(
           'label',
-          Switch.component({
-            state: this.setting(settingsPrefix + 'archiveOlds', '0')() === '1',
-            onchange: (value) => {
-              this.setting(settingsPrefix + 'archiveOlds')(value ? '1' : '0');
+          Switch.component(
+            {
+              state: this.setting(settingsPrefix + 'archiveOlds', '0')() === '1',
+              onchange: (value) => {
+                this.setting(settingsPrefix + 'archiveOlds')(value ? '1' : '0');
+              },
             },
-          }, app.translator.trans(localePrefix + 'archiveOlds'))
+            app.translator.trans(localePrefix + 'archiveOlds')
+          )
         ),
         m(
           'div',
@@ -180,12 +192,15 @@ export default class DiffSettingsModal extends SettingsModal {
         ),
         m(
           'label',
-          Switch.component({
-            state: this.setting(settingsPrefix + 'useCrons', '0')() === '1',
-            onchange: (value) => {
-              this.setting(settingsPrefix + 'useCrons')(value ? '1' : '0');
+          Switch.component(
+            {
+              state: this.setting(settingsPrefix + 'useCrons', '0')() === '1',
+              onchange: (value) => {
+                this.setting(settingsPrefix + 'useCrons')(value ? '1' : '0');
+              },
             },
-          }, app.translator.trans(localePrefix + 'useCrons'))
+            app.translator.trans(localePrefix + 'useCrons')
+          )
         ),
         m(
           'div',

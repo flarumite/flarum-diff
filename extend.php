@@ -24,6 +24,7 @@ use Flarum\Post\Post;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher;
 use TheTurk\Diff\Api\Controllers;
+use TheTurk\Diff\Console\ArchiveCommand;
 use TheTurk\Diff\Models\Diff;
 
 return [
@@ -48,9 +49,13 @@ return [
     static function (Container $container, Dispatcher $events) {
         $events->subscribe(Listeners\PostActions::class);
         $events->subscribe(Listeners\AddDiffRelationship::class);
-        $events->subscribe(Listeners\RegisterConsoleCommand::class);
         $events->subscribe(Listeners\UserPreferences::class);
 
         //$container->register(Providers\ConsoleProvider::class);
     },
+
+    (new \FoF\Console\Extend\EnableConsole()),
+
+    (new Extend\Console())
+        ->command(ArchiveCommand::class),
 ];

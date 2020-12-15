@@ -95,13 +95,11 @@ export default class DiffList extends Component {
                       item,
                       onclick: () => {
                         if (!item.deletedAt()) {
-                          app.modal.show(
-                            DiffModal, {
-                              item,
-                              post: this.post,
-                              moreResults: this.moreResults,
-                            }
-                          );
+                          app.modal.show(DiffModal, {
+                            item,
+                            post: this.post,
+                            moreResults: this.moreResults,
+                          });
 
                           // fix for Chrome
                           // tooltips are not disappearing onclick
