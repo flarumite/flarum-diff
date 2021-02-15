@@ -277,19 +277,19 @@ class DiffSerializer extends AbstractSerializer
         return $this->hasOne($diff, BasicUserSerializer::class);
     }
 
-    // /**
-    //  * @return \Illuminate\Database\Eloquent\Relations\hasOne
-    //  */
-    // public function deletedUser($diff)
-    // {
-    //     return $this->hasOne($diff, BasicUserSerializer::class);
-    // }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function deletedUser($diff)
+    {
+        return $this->hasOne($diff, BasicUserSerializer::class);
+    }
 
-    // /**
-    //  * @return \Illuminate\Database\Eloquent\Relations\hasOne
-    //  */
-    // public function rollbackedUser($diff)
-    // {
-    //     return $this->hasOne($diff, BasicUserSerializer::class);
-    // }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function rollbackedUser($diff)
+    {
+        return $this->hasOne($diff, BasicUserSerializer::class);
+    }
 }
