@@ -89,7 +89,6 @@ class DiffSerializer extends AbstractSerializer
             'combinedHtml'         => null,
             'previewHtml'          => null,
             'comparisonBetween'    => null,
-
         ];
 
         // set attributes if revision is not deleted
@@ -242,6 +241,8 @@ class DiffSerializer extends AbstractSerializer
 
             $attributes['comparisonBetween'] = json_encode($comparisonArray);
         }
+
+        return $attributes;
     }
 
     /*
@@ -276,19 +277,19 @@ class DiffSerializer extends AbstractSerializer
         return $this->hasOne($diff, BasicUserSerializer::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
-     */
-    public function deletedUser($diff)
-    {
-        return $this->hasOne($diff, BasicUserSerializer::class);
-    }
+    // /**
+    //  * @return \Illuminate\Database\Eloquent\Relations\hasOne
+    //  */
+    // public function deletedUser($diff)
+    // {
+    //     return $this->hasOne($diff, BasicUserSerializer::class);
+    // }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\hasOne
-     */
-    public function rollbackedUser($diff)
-    {
-        return $this->hasOne($diff, BasicUserSerializer::class);
-    }
+    // /**
+    //  * @return \Illuminate\Database\Eloquent\Relations\hasOne
+    //  */
+    // public function rollbackedUser($diff)
+    // {
+    //     return $this->hasOne($diff, BasicUserSerializer::class);
+    // }
 }
