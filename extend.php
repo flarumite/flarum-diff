@@ -51,7 +51,6 @@ return [
 
         $events->subscribe(Listeners\PostActions::class);
         $events->subscribe(Listeners\AddDiffRelationship::class);
-        $events->subscribe(Listeners\UserPreferences::class);
 
         //$app->register(Providers\ConsoleProvider::class);
     },
@@ -71,4 +70,7 @@ return [
 
             return (bool) $value;
         }),
+
+    (new Extend\User())
+        ->registerPreference('diffRenderer', 'strval', 'sideBySide'),
 ];
