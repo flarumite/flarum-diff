@@ -5,7 +5,6 @@ import DiffModal from './DiffModal';
 import LoadingIndicator from 'flarum/components/LoadingIndicator';
 import extractText from 'flarum/utils/extractText';
 import touchDevice from '../utils/touchDevice';
-import redrawPost from '../utils/redrawPost';
 
 /**
  * The `DiffList` component displays a list of the post's revisions.
@@ -41,11 +40,8 @@ export default class DiffList extends Component {
                       item,
                       onclick: () => {
                         if (!item.deletedAt()) {
-                          app.modal.show(DiffModal, {
-                            item,
-                            post: state.post,
-                            moreResults: state.moreResults,
-                          });
+                          state.selectedItem = item;
+                          app.modal.show(DiffModal, { listState: state });
 
                           // fix for Chrome
                           // tooltips are not disappearing onclick
