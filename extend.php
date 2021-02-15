@@ -34,17 +34,17 @@ return [
         ->get('/diff', 'diff.index', Controllers\ListDiffController::class)
         ->delete('/diff/{id}', 'diff.delete', Controllers\DeleteDiffController::class)
         ->post('/diff/{id}', 'diff.rollback', Controllers\RollbackToDiffController::class),
+
     (new Extend\Frontend('admin'))
         ->css(__DIR__.'/less/admin.less')
         ->js(__DIR__.'/js/dist/admin.js'),
+
     (new Extend\Frontend('forum'))
         ->css(__DIR__.'/less/forum.less')
         ->js(__DIR__.'/js/dist/forum.js'),
 
     (new Extend\Locales(__DIR__.'/locale')),
 
-    // GetModelRelationship event is deprecated by
-    // https://github.com/flarum/core/pull/2100
     (new Extend\Model(Post::class))
         ->hasMany('diff', Diff::class, 'post_id'),
 
