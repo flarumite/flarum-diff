@@ -70,8 +70,6 @@ export default class DiffList extends Component {
                             }
                           },
                           oncreate: (vnode) => {
-                            console.log($(vnode.dom)[0]);
-
                             $(vnode.dom)
                               // this is a workaround for adding custom
                               // classes into bootstrap tooltips
