@@ -1,6 +1,6 @@
 the-turk-diff:
     forum:
-        revisions:                    "{revisionCount, plural, one {{revisionCount} revision} other {{revisionCount} revisions}"
+        revisions:                    "{revisionCount, plural, one {{revisionCount} revision} other {{revisionCount} revisions}}"
         emptyText:                    No Revisions
         editedText:                   => core.forum.post.edited_text
         deletedText:                  (deleted)
