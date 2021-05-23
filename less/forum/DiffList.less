@@ -31,6 +31,7 @@
       & > button,
       & > span {
         display: flex;
+        gap: 10px;
         align-items: center;
         width: 100%;
         color: @text-color;
@@ -46,6 +47,11 @@
         font-weight: normal;
         text-decoration: none;
         padding: 8px 24px;
+
+        .Button-label {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
 
       & > a,
@@ -77,8 +83,7 @@
 
       .Avatar {
         .Avatar--size(24px);
-        float: left;
-        margin-right: 10px;
+        min-width: 24px;
       }
     }
   }
